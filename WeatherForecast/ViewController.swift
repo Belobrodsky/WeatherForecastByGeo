@@ -11,6 +11,8 @@ import CoreLocation
 class ViewController: UIViewController {
     
     let locationManager = CLLocationManager()
+// ModelData
+    var weatherData = WeatherData()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,15 +42,59 @@ class ViewController: UIViewController {
         }
               
     }
+    
+    func updateWeatherInfo(latitude: Double, longtitude: Double){
+        
+        //url сессия по шаблону синглетон
+        let session = URLSession.shared
+       
+        //.description convert Double to Text
+        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?lat=\(latitude.description)&lon=\(longtitude.description)&units=metric&lang=ru&appid=ddc7533529baedb5cda5b2309a455707")!
+        
+        //print("http://api.openweathermap.org/data/2.5/weather?lat=\(latitude.description)&lon=\(longtitude.description)&units=metric&lang=ru&appid=ddc7533529baedb5cda5b2309a455707")
+        
+        let task = session.dataTask(with: url) { data, response, error in
+            
+            guard error == nil else {
+                print("DataTask error: \(error!.localizedDescription)")
+                return
+            }
+            
+            
+            
+//
+//            guard let data = data else {
+//                print("dataUnwrapping Error in guard data=data")
+//                return
+//            }
+//
+//            print(type(of: data))
 
-}
+            
+            
+            do {
+                self.weatherData = try JSONDecoder().decode(WeatherData.self, from: data!)
+                print(self.weatherData)
+            }
+            catch {
+                print("JsonDecoder on do try error \(error)")
+            }
+        } //task
+        task.resume() //запустим
+        
+    } //updateWeather
+    
+ 
+} //viewController
+
+
 // подпишем наш класс на протокол и в этом месте код будет отвечать за обработку изменений координат при перемещении
 extension ViewController: CLLocationManagerDelegate{
     // тут нужно создать вункцию которая будет выполняться при изменении кординат для этого нужно начать писать "didUp"
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let lastLocation = locations.last {
-            print(lastLocation.coordinate.latitude,  lastLocation.coordinate.longitude)
-            
+            //print(lastLocation.coordinate.latitude,  lastLocation.coordinate.longitude)
+            updateWeatherInfo(latitude: lastLocation.coordinate.latitude, longtitude: lastLocation.coordinate.longitude)
         }
     }
     
