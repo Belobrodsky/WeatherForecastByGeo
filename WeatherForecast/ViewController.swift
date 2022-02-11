@@ -10,6 +10,9 @@ import CoreLocation
 
 class ViewController: UIViewController {
     
+
+    
+    
     let locationManager = CLLocationManager()
 // ModelData
     var weatherData = WeatherData()
@@ -62,6 +65,7 @@ class ViewController: UIViewController {
         //print("http://api.openweathermap.org/data/2.5/weather?lat=\(latitude.description)&lon=\(longtitude.description)&units=metric&lang=ru&appid=ddc7533529baedb5cda5b2309a455707")
         
         let task = session.dataTask(with: url) { data, response, error in
+                //ЭТОТ ПЕРЕХВАТЫВАЮЩИЙ КОД ВЫПОЛНЯЕТСЯ В ДРУГОМ ПОТОКЕ, НЕЖЕЛИ ПОТОК ОСНОВНОГО ПРИЛОЖЕНИЯ
             
             guard error == nil else {
                 print("DataTask error: \(error!.localizedDescription)")
@@ -79,9 +83,12 @@ class ViewController: UIViewController {
                 //ЭТОТ КОМПЛИШЕН ХЕНДЛЯР ВЫПОЛНЯЕТСЯ В ДРУГОМ ПОТОКЕ - НЕ В ТОМ В КОТОРОМ ВЫПОЛНЯЕТСЯ ПРИЛОЖЕНИЕ
                
                //поэтому парралелльно асинхроно запускаем основному потоку
-               DispatchQueue.main.async {
+               //DispatchQueue.main.async
+               //{  //ЭТУ СТРОЧКУ НУЖНО РАЗБИРАТЬ В ОТДЕЛЬНОМ КУРСЕ ПРО МНОГОПОТОЧНОСТЬ,
+                   ///ОНА НУЖНО ДЛЯ ТОГО ЧТОБЫ
+                   ///ОБНОВИТЬ ИНТЕРФЕЙС ОСНОВНОГО ПРИЛОЖЕНИЯ
                    self.updateView()
-               }
+              // }
                
             }
             catch {
