@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     let locationManager = CLLocationManager()
 // ModelData
     var weatherData = WeatherData()
+    
+    var fl=true
+    var cnt = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,11 @@ class ViewController: UIViewController {
               
     }
     
+    func updateView()
+    {
+        print(self.weatherData)
+    }
+    
     func updateWeatherInfo(latitude: Double, longtitude: Double){
         
         //url сессия по шаблону синглетон
@@ -61,30 +69,30 @@ class ViewController: UIViewController {
             }
             
             
-            
-//
-//            guard let data = data else {
-//                print("dataUnwrapping Error in guard data=data")
-//                return
-//            }
-//
-//            print(type(of: data))
-
-            
-            
-            do {
-                self.weatherData = try JSONDecoder().decode(WeatherData.self, from: data!)
-                print(self.weatherData)
+            guard let data = data else {
+                print("dataUnwrapping Error in guard data=data")
+                return
+            }
+           do {
+                self.weatherData = try JSONDecoder().decode(WeatherData.self, from: data)
+                
+                //ЭТОТ КОМПЛИШЕН ХЕНДЛЯР ВЫПОЛНЯЕТСЯ В ДРУГОМ ПОТОКЕ - НЕ В ТОМ В КОТОРОМ ВЫПОЛНЯЕТСЯ ПРИЛОЖЕНИЕ
+               
+               //поэтому парралелльно асинхроно запускаем основному потоку
+               DispatchQueue.main.async {
+                   self.updateView()
+               }
+               
             }
             catch {
                 print("JsonDecoder on do try error \(error)")
             }
-        } //task
+        } //task // ЭТОТ КОМПЛИШЕН ХЕНДЛЯР ВЫПОЛНЯЕТСЯ В ДРУГОМ ПОТОКЕ - НЕ В ТОМ В КОТОРОМ ВЫПОЛНЯЕТСЯ ПРИЛОЖЕНИЕ
+        
+        
         task.resume() //запустим
         
     } //updateWeather
-    
- 
 } //viewController
 
 
@@ -92,10 +100,14 @@ class ViewController: UIViewController {
 extension ViewController: CLLocationManagerDelegate{
     // тут нужно создать вункцию которая будет выполняться при изменении кординат для этого нужно начать писать "didUp"
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        cnt+=1;
         if let lastLocation = locations.last {
             //print(lastLocation.coordinate.latitude,  lastLocation.coordinate.longitude)
+            if fl {
             updateWeatherInfo(latitude: lastLocation.coordinate.latitude, longtitude: lastLocation.coordinate.longitude)
+            // fl = false
+                print("Cnt=\(cnt)")
+            }
         }
     }
-    
 }
