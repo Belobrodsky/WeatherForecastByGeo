@@ -11,7 +11,15 @@ import CoreLocation
 class ViewController: UIViewController {
     
 
+    @IBOutlet weak var cityNameLabel: UILabel!
     
+    @IBOutlet weak var weatherDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var temperatureLabel: UILabel!
+    
+    @IBOutlet weak var weatherIconView: UIImageView!
+    
+   // @IBOutlet weak var weatherIconLabel: UIImageView!
     
     let locationManager = CLLocationManager()
 // ModelData
@@ -51,7 +59,13 @@ class ViewController: UIViewController {
     
     func updateView()
     {
-        print(self.weatherData)
+        //print(self.weatherData)
+        cityNameLabel.text = weatherData.name
+        weatherDescriptionLabel.text=DataSource.weatherIDs[weatherData.weather[0].id]
+        temperatureLabel.text = weatherData.main.temp.description + " ºC"
+        
+        weatherIconView.image = UIImage(named: weatherData.weather[0].icon)
+        
     }
     
     func updateWeatherInfo(latitude: Double, longtitude: Double){
@@ -83,12 +97,12 @@ class ViewController: UIViewController {
                 //ЭТОТ КОМПЛИШЕН ХЕНДЛЯР ВЫПОЛНЯЕТСЯ В ДРУГОМ ПОТОКЕ - НЕ В ТОМ В КОТОРОМ ВЫПОЛНЯЕТСЯ ПРИЛОЖЕНИЕ
                
                //поэтому парралелльно асинхроно запускаем основному потоку
-               //DispatchQueue.main.async
-               //{  //ЭТУ СТРОЧКУ НУЖНО РАЗБИРАТЬ В ОТДЕЛЬНОМ КУРСЕ ПРО МНОГОПОТОЧНОСТЬ,
+               DispatchQueue.main.async
+               {  //ЭТУ СТРОЧКУ НУЖНО РАЗБИРАТЬ В ОТДЕЛЬНОМ КУРСЕ ПРО МНОГОПОТОЧНОСТЬ,
                    ///ОНА НУЖНО ДЛЯ ТОГО ЧТОБЫ
                    ///ОБНОВИТЬ ИНТЕРФЕЙС ОСНОВНОГО ПРИЛОЖЕНИЯ
                    self.updateView()
-              // }
+               }
                
             }
             catch {

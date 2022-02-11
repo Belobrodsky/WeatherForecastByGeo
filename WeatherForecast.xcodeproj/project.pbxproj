@@ -14,6 +14,7 @@
 		30B805B927AFDB3500C89AC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30B805B827AFDB3500C89AC0 /* Assets.xcassets */; };
 		30B805BC27AFDB3500C89AC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B805BA27AFDB3500C89AC0 /* LaunchScreen.storyboard */; };
 		30B805E427B063CC00C89AC0 /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B805E327B063CC00C89AC0 /* DataModels.swift */; };
+		30BB210B27B66B8100C2DCB4 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB210A27B66B8100C2DCB4 /* DataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		30B805BB27AFDB3500C89AC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30B805BD27AFDB3500C89AC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30B805E327B063CC00C89AC0 /* DataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
+		30BB210A27B66B8100C2DCB4 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = Resources/DataSource.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				30B805E327B063CC00C89AC0 /* DataModels.swift */,
 				30B805AF27AFDB3100C89AC0 /* AppDelegate.swift */,
+				30BB210A27B66B8100C2DCB4 /* DataSource.swift */,
 				30B805B127AFDB3100C89AC0 /* SceneDelegate.swift */,
 				30B805B327AFDB3100C89AC0 /* ViewController.swift */,
 				30B805B527AFDB3100C89AC0 /* Main.storyboard */,
@@ -144,6 +147,7 @@
 				30B805B427AFDB3100C89AC0 /* ViewController.swift in Sources */,
 				30B805E427B063CC00C89AC0 /* DataModels.swift in Sources */,
 				30B805B027AFDB3100C89AC0 /* AppDelegate.swift in Sources */,
+				30BB210B27B66B8100C2DCB4 /* DataSource.swift in Sources */,
 				30B805B227AFDB3100C89AC0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

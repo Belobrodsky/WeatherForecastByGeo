@@ -25,21 +25,21 @@
                                 <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Погодные условия" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0T-o1-0yk">
-                                <rect key="frame" x="103" y="176" width="208" height="28"/>
-                                <fontDescription key="fontDescription" name="Georgia-Italic" family="Georgia" pointSize="24"/>
-                                <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Погодные условия" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0T-o1-0yk">
+                                <rect key="frame" x="86" y="181" width="242.5" height="28"/>
+                                <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="24"/>
+                                <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9A-vp-DNB">
-                                <rect key="frame" x="119" y="247" width="84" height="57"/>
+                                <rect key="frame" x="102" y="276" width="136" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Kk-TH-84e">
-                                <rect key="frame" x="217" y="236" width="82" height="78"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Kk-TH-84e">
+                                <rect key="frame" x="254" y="265" width="82" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -51,6 +51,7 @@
                             <constraint firstItem="W0T-o1-0yk" firstAttribute="top" secondItem="093-LS-6J2" secondAttribute="bottom" constant="22" id="BY5-aH-ffo"/>
                             <constraint firstItem="W0T-o1-0yk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Jbu-QX-hDS"/>
                             <constraint firstItem="Z0R-SR-zrP" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="P8i-Hq-Yho"/>
+                            <constraint firstItem="W0T-o1-0yk" firstAttribute="top" secondItem="093-LS-6J2" secondAttribute="bottom" constant="32" id="UJh-WB-bIG"/>
                             <constraint firstItem="Z0R-SR-zrP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="c1G-Tz-B7r"/>
                             <constraint firstItem="093-LS-6J2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h6o-4T-7jZ"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Z0R-SR-zrP" secondAttribute="bottom" id="iJf-G0-Nb1"/>
@@ -62,6 +63,12 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="cityNameLabel" destination="093-LS-6J2" id="mYk-rY-3Ot"/>
+                        <outlet property="temperatureLabel" destination="Q9A-vp-DNB" id="OgZ-ks-hfy"/>
+                        <outlet property="weatherDescriptionLabel" destination="W0T-o1-0yk" id="ilQ-jP-iwk"/>
+                        <outlet property="weatherIconView" destination="1Kk-TH-84e" id="wfM-OF-yCS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -70,9 +77,6 @@
     </scenes>
     <resources>
         <image name="back_weather" width="750" height="1334"/>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
